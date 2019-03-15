@@ -1,11 +1,18 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 
+const getKey = require("./src/util.js");
+const Game = require("./src/game.js");
+const Player = require("./src/player.js");
 const app = express();
 
 const startGame = function(req, res) {
-  res.send("Your game key is 1234");
+  const gameKey = getKey();
+  const hostPlayer = new Player(req.body.user_name, "0", 1);
+  const game = new Game(gameKey, hostPlayer);
+  res.send(`Your game key is ${gameKey}`);
   res.end();
+  app.game = game;
 };
 
 const joinGame = function(req, res) {
@@ -14,7 +21,7 @@ const joinGame = function(req, res) {
 };
 
 const instruction = function(req, res) {
-  res.send("This section will have the instruction to play the game");
+  res.send("Instruction for how to play.");
   res.end();
 };
 
