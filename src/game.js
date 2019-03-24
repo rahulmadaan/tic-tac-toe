@@ -11,11 +11,11 @@ const board = {
 };
 
 class Game {
-  constructor(gameKey, hostPlayer, joinedPlayer) {
+  constructor(gameKey, hostPlayer) {
     this.gameKey = gameKey;
     this.currentPlayer = hostPlayer;
     this.board = board;
-    this.joinedPlayer = "";
+    this.joinedPlayer;
   }
   getBoard() {
     return this.board;
